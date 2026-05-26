@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Admin Analytics - AI Complaint Management System</title>
+    <style>
+        /* Background */
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: url('/static/bg1.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #f0f0f0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        /* Navigation Menu */
+        .nav {
+            width: 100%;
+            max-width: 900px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: flex-start;
+            background-color: rgba(0,0,0,0.6);
+            padding: 12px 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+        .nav a {
+            color: #ffd700;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            padding: 8px 16px;
+            border-radius: 6px;
+            transition: background-color 0.3s ease;
+        }
+        .nav a:hover {
+            background-color: #ffa500;
+            color: #fff;
+        }
+
+        /* Container */
+        .container {
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            padding: 30px 40px;
+            max-width: 900px;
+            width: 100%;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.7);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 2.8rem;
+            color: #ffd700; /* gold */
+            text-shadow: 0 0 10px #ffa500;
+        }
+
+        h3 {
+            margin-top: 30px;
+            font-size: 1.8rem;
+            border-bottom: 2px solid #ffa500;
+            padding-bottom: 8px;
+            color: #ffae00;
+        }
+
+        p, ul {
+            font-size: 1.3rem;
+            line-height: 1.6;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        ul li {
+            background: linear-gradient(90deg, #ff7e5f, #feb47b);
+            margin: 10px 0;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-weight: bold;
+            color: #3e1f00;
+            box-shadow: 0 4px 8px rgba(255,126,95,0.5);
+            transition: background 0.3s ease;
+        }
+
+        ul li:hover {
+            background: linear-gradient(90deg, #feb47b, #ff7e5f);
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+            h2 {
+                font-size: 2rem;
+            }
+            h3 {
+                font-size: 1.4rem;
+            }
+            p, ul li {
+                font-size: 1.1rem;
+            }
+            .nav a {
+                font-size: 1rem;
+                padding: 6px 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Menu -->
+    <nav class="nav">
+        <a href="{{ url_for('admin_dashboard') }}">← Return to Admin Dashboard</a>
+    </nav>
+
+    <div class="container">
+        <h2>Admin Dashboard Analytics</h2>
+
+        <p><strong>Total Complaints:</strong> {{ total_complaints }}</p>
+
+        <h3>Complaints by Status</h3>
+        <ul>
+            {% for status, count in status_counts.items() %}
+                <li>{{ status }}: {{ count }}</li>
+            {% endfor %}
+        </ul>
+
+        <h3>Complaints by Urgency</h3>
+        <ul>
+            {% for urgency, count in urgency_counts.items() %}
+                <li>{{ urgency }}: {{ count }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>

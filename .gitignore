@@ -1,0 +1,35 @@
+# Databases
+app.db
+*.db
+*.sqlite
+
+# Environment variables / credentials
+.env
+
+# Virtual environment
+complaint/
+venv/
+.venv/
+env/
+
+# Python cache and temporary files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Editor and system files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+.DS_Store
+
+# Third-party downloaded resources (e.g. large indic_nlp_resources clone)
+indic_nlp_resources/

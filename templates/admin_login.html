@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Login - AI Complaint Management System</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: url('/static/bg1.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Navbar */
+    .navbar {
+      background-color: rgba(0, 0, 0, 0.85);
+      display: flex;
+      padding: 15px 25px;
+    }
+
+    .navbar a {
+      color: #f0a500;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.1rem;
+      margin-right: 20px;
+      padding: 8px 14px;
+      border-radius: 6px;
+      transition: background-color 0.3s ease;
+    }
+
+    .navbar a:hover {
+      background-color: #f0a500;
+      color: #1e1e1e;
+    }
+
+    /* Login Container */
+    .container {
+      max-width: 400px;
+      margin: 80px auto;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 12px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      padding: 30px 35px;
+      color: #333;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: #1e1e1e;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #444;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      width: 100%;
+      padding: 12px;
+      font-size: 1rem;
+      border: 1.5px solid #ccc;
+      border-radius: 6px;
+      transition: border-color 0.3s ease;
+    }
+
+    input[type="text"]:focus,
+    input[type="password"]:focus {
+      border-color: #f0a500;
+      outline: none;
+    }
+
+    input[type="submit"] {
+      width: 100%;
+      padding: 14px;
+      background-color: #f0a500;
+      color: #1e1e1e;
+      border: none;
+      border-radius: 8px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #cc8400;
+      transform: scale(1.03);
+    }
+
+    .error {
+      background-color: #ffe6e6;
+      color: #b30000;
+      padding: 10px 15px;
+      margin-bottom: 15px;
+      border-left: 4px solid #b30000;
+      border-radius: 6px;
+      font-size: 0.95rem;
+    }
+
+    /* Footer */
+    footer {
+      background-color: rgba(0, 0, 0, 0.8);
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      margin-top: auto;
+      font-size: 0.9rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+      .container {
+        margin: 60px 15px;
+        padding: 25px 20px;
+      }
+
+      h2 {
+        font-size: 1.6rem;
+      }
+
+      input[type="submit"] {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <a href="/">← Home</a>
+  </nav>
+
+  <!-- Login Form -->
+  <div class="container">
+    <h2>Admin Login</h2>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="error">
+          {% for category, message in messages %}
+            <p>{{ message }}</p>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    <form action="/admin_login" method="POST">
+      <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" name="username" id="username" required />
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" name="password" id="password" required />
+      </div>
+
+      <input type="submit" value="Login" />
+    </form>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 AI Complaint Management System. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

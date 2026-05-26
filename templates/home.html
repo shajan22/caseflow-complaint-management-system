@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Complaint Management System</title>
+  <style>
+    /* Reset and base */
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: url('/static/bg1.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Header */
+    header {
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 2rem 1rem;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.8rem;
+      letter-spacing: 2px;
+      color: #f0a500;
+      text-shadow: 0 0 10px #f0a500aa;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    /* Navbar */
+    .navbar {
+      background-color: rgba(0, 0, 0, 0.85);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 12px 20px;
+      gap: 20px;
+    }
+
+    .navbar a {
+      color: #f0a500;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 1.1rem;
+      padding: 10px 20px;
+      border-radius: 6px;
+      transition: background-color 0.3s ease;
+    }
+
+    .navbar a:hover {
+      background-color: #f0a500;
+      color: #222;
+    }
+
+    /* Content Section */
+    .content {
+      background-color: rgba(255, 255, 255, 0.95);
+      margin: 60px auto;
+      padding: 40px;
+      border-radius: 16px;
+      max-width: 900px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+      text-align: center;
+      color: #333;
+    }
+
+    .content h2 {
+      font-size: 2.4rem;
+      color: #1e1e1e;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .content p {
+      font-size: 1.2rem;
+      line-height: 1.8;
+      color: #555;
+      margin-bottom: 2rem;
+    }
+
+    /* Buttons */
+    .button-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .btn {
+      background-color: #f0a500;
+      color: #1e1e1e;
+      text-decoration: none;
+      padding: 14px 28px;
+      font-size: 1.2rem;
+      border-radius: 8px;
+      font-weight: 700;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 14px rgba(240, 165, 0, 0.4);
+    }
+
+    .btn:hover {
+      background-color: #cc8400;
+      transform: scale(1.05);
+    }
+
+    /* Footer */
+    footer {
+      background-color: rgba(0, 0, 0, 0.8);
+      color: white;
+      text-align: center;
+      padding: 1rem 0;
+      margin-top: auto;
+      font-size: 1rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2rem;
+      }
+
+      .content {
+        margin: 40px 20px;
+        padding: 30px 20px;
+      }
+
+      .content h2 {
+        font-size: 1.8rem;
+      }
+
+      .content p {
+        font-size: 1rem;
+      }
+
+      .btn {
+        font-size: 1rem;
+        padding: 12px 22px;
+      }
+
+      .navbar {
+        gap: 10px;
+        padding: 10px;
+      }
+
+      .navbar a {
+        font-size: 1rem;
+        padding: 8px 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>AI-Powered Complaint System</h1>
+</header>
+
+<nav class="navbar">
+  <a href="/">Home</a>
+  <a href="/login">Login</a>
+  <a href="/admin_login">Admin</a>
+  <a href="/register">Register</a>
+</nav>
+
+<main class="content">
+  <h2>Welcome to the Complaint Management System</h2>
+  <p>
+    Our AI-powered platform allows you to quickly and easily submit complaints, which are automatically categorized and prioritized. Stay informed with real-time status updates and experience transparent, effective resolution tracking.
+  </p>
+
+  <div class="button-container">
+    <a href="/login" class="btn">Login</a>
+    <a href="/register" class="btn">Register</a>
+  </div>
+</main>
+
+<footer>
+  <p>&copy; 2025 AI Complaint Management System. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

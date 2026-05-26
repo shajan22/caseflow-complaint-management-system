@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Submit Complaint - AI Complaint Management System</title>
+  <style>
+    /* Base and Reset */
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: url('/static/bg4.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #222;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Header */
+    header {
+      background: rgba(0, 0, 0, 0.65);
+      padding: 2.5rem 1rem;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.8rem;
+      color: #f0a500;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-shadow: 0 0 12px #f0a500aa;
+    }
+
+    /* Navbar */
+    .navbar {
+      background-color: rgba(0, 0, 0, 0.75);
+      display: flex;
+      justify-content: flex-start;
+      padding: 12px 25px;
+      gap: 20px;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.6);
+    }
+    .navbar a {
+      color: #f0a500;
+      font-weight: 700;
+      text-decoration: none;
+      font-size: 1.1rem;
+      padding: 8px 16px;
+      border-radius: 8px;
+      transition: background-color 0.3s ease;
+    }
+    .navbar a:hover {
+      background-color: #f0a500;
+      color: #111;
+    }
+
+    /* Container */
+    .container {
+      max-width: 600px;
+      margin: 80px auto 40px;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 14px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      padding: 30px 35px;
+      color: #222;
+    }
+    .container h2 {
+      text-align: center;
+      font-size: 2.4rem;
+      margin-bottom: 25px;
+      color: #1a1a1a;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+    }
+
+    /* Alert */
+    .alert {
+      background-color: #f8d7da;
+      border: 1px solid #f5c6cb;
+      color: #721c24;
+      padding: 15px 20px;
+      border-radius: 8px;
+      margin-bottom: 25px;
+      font-weight: 600;
+      box-shadow: 0 3px 10px rgba(255, 0, 0, 0.1);
+    }
+    .alert p {
+      margin: 0;
+      font-size: 1.05rem;
+    }
+
+    /* Form */
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+    label {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #444;
+      margin-bottom: 6px;
+      user-select: none;
+    }
+    textarea {
+      resize: vertical;
+      min-height: 140px;
+      font-size: 1.1rem;
+      padding: 12px 15px;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      transition: border-color 0.3s ease;
+      font-family: inherit;
+      color: #222;
+    }
+    textarea:focus {
+      border-color: #f0a500;
+      outline: none;
+      box-shadow: 0 0 6px #f0a500aa;
+    }
+
+    /* Submit Button */
+    button {
+      padding: 14px 0;
+      background-color: #f0a500;
+      border: none;
+      border-radius: 10px;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #111;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      box-shadow: 0 5px 15px rgba(240, 165, 0, 0.4);
+      user-select: none;
+    }
+    button:hover {
+      background-color: #cc8400;
+      transform: scale(1.05);
+      box-shadow: 0 7px 20px rgba(204, 132, 0, 0.6);
+    }
+    button:active {
+      transform: scale(1);
+      box-shadow: 0 4px 10px rgba(204, 132, 0, 0.5);
+    }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      .container {
+        margin: 60px 15px 30px;
+        padding: 25px 20px;
+      }
+      header h1 {
+        font-size: 2rem;
+      }
+      .navbar a {
+        font-size: 1rem;
+        padding: 6px 12px;
+      }
+      label {
+        font-size: 1.1rem;
+      }
+      textarea {
+        font-size: 1rem;
+        min-height: 120px;
+      }
+      button {
+        font-size: 1.1rem;
+        padding: 12px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>AI-Powered Complaint Management System</h1>
+  </header>
+
+  <nav class="navbar">
+    <a href="/user_complaints">View My Complaints</a>
+    <a href="/logout">Logout</a>
+  </nav>
+
+  <main class="container">
+    <h2>Submit Your Complaint</h2>
+
+    {% if get_flashed_messages() %}
+      <div class="alert" role="alert">
+        {% for message in get_flashed_messages() %}
+          <p>{{ message }}</p>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    <form action="/submit_complaint" method="POST" novalidate>
+      <label for="description">Complaint Description</label>
+      <textarea id="description" name="description" placeholder="Describe the issue you're facing" required></textarea>
+
+      <button type="submit">Submit Complaint</button>
+    </form>
+  </main>
+
+  <footer style="background-color: rgba(0,0,0,0.7); color: white; text-align: center; padding: 1rem 0; margin-top: auto;">
+    <p>&copy; 2025 AI Complaint Management System. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

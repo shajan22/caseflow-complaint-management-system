@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <style>
+        /* General styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .navbar {
+            background-color: #333;
+            overflow: hidden;
+        }
+        .navbar a {
+            float: left;
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+        }
+        .navbar a:hover {
+            background-color: #575757;
+        }
+        .container {
+            padding: 20px;
+            background-color: white;
+            margin: 20px auto;
+            width: 90%;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #333;
+            color: white;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        .btn {
+            padding: 6px 12px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Admin Dashboard</h1>
+</header>
+
+<div class="navbar">
+    <a href="/">Home</a>
+    <a href="/submit_complaint">Submit Complaint</a>
+    <a href="/admin_dashboard">Admin Dashboard</a>
+    <a href="/logout">Logout</a>
+</div>
+
+<div class="container">
+    <h2>Complaint List</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Complaint ID</th>
+                <th>Username</th>
+                <th>Category</th>
+                <th>Urgency Level</th>
+                <th>Registered Date and Time</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for complaint in complaints %}
+                <tr>
+                    <td>{{ complaint[0] }}</td> <!-- Complaint ID -->
+                    <td>{{ complaint[1] }}</td> <!-- Username -->
+                    <td>{{ complaint[2] }}</td> <!-- Category -->
+                    <td>{{ complaint[3] }}</td> <!-- Urgency Level -->
+                    <td>{{ complaint[4] }}</td> <!-- Timestamp -->
+                    <td>
+                        <button class="btn" onclick="sendNotification({{ complaint[0] }})">Send Notification</button>
+                        <a href="{{ url_for('view_complaint', complaint_id=complaint[0]) }}" class="btn">View Details</a>
+                        <form action="{{ url_for('delete_complaint', complaint_id=complaint[0]) }}" method="post" style="display:inline;">
+                            <button type="submit" class="btn" onclick="return confirm('Are you sure you want to delete this complaint?')">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<footer>
+    <p>&copy; 2025 AI Complaint Management System. All rights reserved.</p>
+</footer>
+
+<script>
+    // JavaScript for sending notifications (Dummy function)
+    function sendNotification(complaintId) {
+        alert("Notification sent for Complaint ID: " + complaintId);
+    }
+</script>
+
+</body>
+</html>

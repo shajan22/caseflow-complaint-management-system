@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Petition Status</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, #f0f8ff, #add8e6);
+            color: #333;
+        }
+
+        header {
+            background-color: #0077b6;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 20px;
+            background: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+        }
+
+        main h2 {
+            text-align: center;
+            color: #0077b6;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        label {
+            font-size: 1rem;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 12px 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #fff;
+            background-color: #0077b6;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #005f86;
+        }
+
+        .status {
+            margin-top: 30px;
+            padding: 15px;
+            background-color: #e6f7ff;
+            border: 1px solid #b3e5ff;
+            border-radius: 5px;
+            color: #0077b6;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        footer {
+            margin-top: 30px;
+            text-align: center;
+            color: #777;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: #0077b6;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Petition Status Portal</h1>
+    </header>
+    <main>
+        <h2>Check the Status of Your Petition</h2>
+        <form action="/status" method="POST">
+            <label for="petition_id">Enter your Petition ID:</label>
+            <input type="text" id="petition_id" name="petition_id" placeholder="Enter Petition ID here..." required>
+            <button type="submit">Check Status</button>
+        </form>
+        <!-- Example placeholder for the status response -->
+        <div class="status">
+            <!-- Status message will be dynamically updated here -->
+            Example: Your petition is under review.
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2025 Petition Management System | <a href="/">Submit a New Petition</a></p>
+    </footer>
+</body>
+</html>

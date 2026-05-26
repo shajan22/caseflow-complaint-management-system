@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Complaint Submission Result</title>
+  <style>
+    /* Reset & base styles */
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f2f2f2;
+      color: #222;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Header */
+    header {
+      background: rgba(0, 0, 0, 0.75);
+      padding: 2rem 1rem;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+    header h1 {
+      color: #f0a500;
+      font-size: 2.6rem;
+      font-weight: bold;
+      letter-spacing: 1.5px;
+      margin: 0;
+      text-shadow: 0 0 8px #f0a500aa;
+    }
+
+    /* Navbar */
+    .navbar {
+      background-color: #1e1e1e;
+      display: flex;
+      gap: 20px;
+      padding: 14px 25px;
+    }
+    .navbar a {
+      color: #f0a500;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      padding: 8px 14px;
+      border-radius: 6px;
+      transition: background 0.3s ease;
+    }
+    .navbar a:hover {
+      background-color: #f0a500;
+      color: #1e1e1e;
+    }
+
+    /* Container */
+    .container {
+      max-width: 700px;
+      margin: 60px auto;
+      background-color: white;
+      border-radius: 14px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      padding: 35px;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 2rem;
+      color: #1e1e1e;
+      margin-bottom: 25px;
+    }
+
+    .result-box {
+      background-color: #fff9e6;
+      border-left: 6px solid #f0a500;
+      padding: 25px 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    .result-box p {
+      font-size: 1.15rem;
+      margin-bottom: 10px;
+      line-height: 1.6;
+    }
+
+    /* Buttons */
+    .action-btn {
+      display: block;
+      width: 100%;
+      background-color: #f0a500;
+      color: #1e1e1e;
+      border: none;
+      padding: 14px;
+      margin-top: 25px;
+      border-radius: 8px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .action-btn:hover {
+      background-color: #cc8400;
+      transform: scale(1.03);
+    }
+
+    .action-link {
+      display: block;
+      margin-top: 20px;
+      text-align: center;
+      font-weight: bold;
+      font-size: 1.1rem;
+      color: #1e90ff;
+      text-decoration: none;
+    }
+
+    .action-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Footer */
+    footer {
+      background-color: rgba(0, 0, 0, 0.8);
+      color: white;
+      text-align: center;
+      padding: 1rem 0;
+      margin-top: auto;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 2rem;
+      }
+      .container {
+        margin: 40px 15px;
+        padding: 25px;
+      }
+      .result-box p {
+        font-size: 1rem;
+      }
+      .action-btn {
+        font-size: 1rem;
+        padding: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>AI-Powered Complaint System</h1>
+  </header>
+
+  <nav class="navbar">
+    <a href="/">Home</a>
+    <a href="/submit_complaint">Submit Complaint</a>
+    <a href="/logout">Logout</a>
+  </nav>
+
+  <main class="container">
+    <h2>Complaint Submitted Successfully</h2>
+
+    <div class="result-box">
+      <p><strong>Complaint ID:</strong> {{ complaint_id }}</p>
+      <p><strong>Category:</strong> {{ category }}</p>
+      <p><strong>Urgency Level:</strong> {{ urgency }}</p>
+      <p><strong>Registered Date and Time:</strong> {{ timestamp }}</p>
+    </div>
+
+    <a href="/user_complaints" class="action-link">→ View My Complaints</a>
+    <button class="action-btn" onclick="window.location.href='/submit_complaint'">Submit Another Complaint</button>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 AI Complaint Management System. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

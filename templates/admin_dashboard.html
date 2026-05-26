@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Admin Dashboard - AI Complaint Management System</title>
+<style>
+    /* Reset & base */
+    * {
+        box-sizing: border-box;
+    }
+    body {
+        margin: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: #f0f2f5;
+        color: #333;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+    /* Header */
+    header {
+        background-color: #2a3f54;
+        color: white;
+        padding: 20px;
+        text-align: center;
+        font-size: 1.8rem;
+        font-weight: 700;
+        letter-spacing: 1.2px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+    }
+    /* Navbar */
+    .navbar {
+        display: flex;
+        background-color: #34495e;
+        padding: 10px 20px;
+        justify-content: flex-end;
+        gap: 20px;
+    }
+    .navbar a {
+        color: #ecf0f1;
+        text-decoration: none;
+        font-weight: 600;
+        padding: 8px 15px;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+    .navbar a:hover {
+        background-color: #1abc9c;
+        color: white;
+    }
+    /* Container */
+    .container {
+        max-width: 1200px;
+        margin: 25px auto;
+        background: white;
+        padding: 25px 30px;
+        border-radius: 10px;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+        flex-grow: 1;
+    }
+    /* Title */
+    .container h2 {
+        margin-bottom: 20px;
+        font-size: 2rem;
+        color: #34495e;
+        font-weight: 700;
+        text-align: center;
+    }
+    /* Filter Form */
+    form.filter-form {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin-bottom: 25px;
+        justify-content: center;
+    }
+    form.filter-form input[type="text"],
+    form.filter-form select {
+        padding: 10px 12px;
+        font-size: 1rem;
+        border: 1.5px solid #bdc3c7;
+        border-radius: 6px;
+        transition: border-color 0.3s ease;
+        min-width: 200px;
+    }
+    form.filter-form input[type="text"]:focus,
+    form.filter-form select:focus {
+        border-color: #1abc9c;
+        outline: none;
+    }
+    form.filter-form button {
+        padding: 10px 25px;
+        font-size: 1rem;
+        background-color: #1abc9c;
+        border: none;
+        color: white;
+        font-weight: 700;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    form.filter-form button:hover {
+        background-color: #16a085;
+    }
+    /* Reset Button */
+    form.reset-form {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    form.reset-form button {
+        background-color: #e74c3c;
+        color: white;
+        padding: 12px 30px;
+        font-weight: 700;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        box-shadow: 0 4px 12px rgba(231, 76, 60, 0.4);
+        transition: background-color 0.3s ease;
+    }
+    form.reset-form button:hover {
+        background-color: #c0392b;
+    }
+    /* Table */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.95rem;
+        min-width: 700px;
+    }
+    thead {
+        background-color: #1abc9c;
+        color: white;
+    }
+    th, td {
+        text-align: left;
+        padding: 12px 15px;
+        border-bottom: 1px solid #ddd;
+        vertical-align: middle;
+    }
+    tbody tr:hover {
+        background-color: #ecf6f5;
+    }
+    /* Status select & buttons */
+    select.status-select {
+        padding: 6px 10px;
+        border-radius: 5px;
+        border: 1px solid #bdc3c7;
+        font-weight: 600;
+        cursor: pointer;
+        transition: border-color 0.3s ease;
+    }
+    select.status-select:hover,
+    select.status-select:focus {
+        border-color: #16a085;
+        outline: none;
+    }
+    button.update-btn {
+        background-color: #2980b9;
+        color: white;
+        border: none;
+        padding: 7px 14px;
+        margin-left: 8px;
+        border-radius: 5px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    button.update-btn:hover {
+        background-color: #1f6391;
+    }
+    button.btn-delete {
+        background-color: #e74c3c;
+        color: white;
+        border: none;
+        padding: 7px 14px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: background-color 0.3s ease;
+    }
+    button.btn-delete:hover {
+        background-color: #c0392b;
+    }
+    /* Responsive */
+    @media (max-width: 992px) {
+        table {
+            min-width: 100%;
+            font-size: 0.9rem;
+        }
+        form.filter-form {
+            justify-content: center;
+        }
+        form.filter-form input[type="text"], form.filter-form select {
+            min-width: 150px;
+        }
+    }
+    @media (max-width: 600px) {
+        table, thead, tbody, th, td, tr {
+            display: block;
+        }
+        thead tr {
+            position: absolute;
+            top: -9999px;
+            left: -9999px;
+        }
+        tbody tr {
+            margin-bottom: 1.5rem;
+            border-radius: 8px;
+            background-color: white;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            padding: 15px;
+        }
+        tbody td {
+            padding-left: 50%;
+            text-align: right;
+            position: relative;
+            border: none;
+            border-bottom: 1px solid #eee;
+        }
+        tbody td::before {
+            content: attr(data-label);
+            position: absolute;
+            left: 15px;
+            width: 45%;
+            padding-left: 10px;
+            font-weight: 700;
+            text-align: left;
+            color: #34495e;
+        }
+        /* Adjust buttons */
+        button.update-btn, button.btn-delete {
+            margin-top: 10px;
+            width: 100%;
+        }
+        select.status-select {
+            width: 100%;
+            margin-top: 10px;
+        }
+    }
+</style>
+</head>
+<body>
+
+<header>
+    Admin Dashboard
+</header>
+
+<nav class="navbar">
+    <a href="{{ url_for('admin_analytics') }}">View Analytics</a>
+    <a href="/logout">Logout</a>
+</nav>
+
+<div class="container">
+
+    <h2>Complaint List</h2>
+
+    <form class="filter-form" method="get" action="/admin_dashboard">
+        <input type="text" name="search" placeholder="Search by username or description" value="{{ search_query }}" autocomplete="off" />
+        
+        <select name="status" aria-label="Filter by status">
+            <option value="">All Statuses</option>
+            <option value="Pending" {% if status_filter == 'Pending' %}selected{% endif %}>Pending</option>
+            <option value="Completed" {% if status_filter == 'Completed' %}selected{% endif %}>Completed</option>
+        </select>
+
+        <select name="urgency" aria-label="Filter by urgency">
+            <option value="">All Urgencies</option>
+            <option value="Low" {% if urgency_filter == 'Low' %}selected{% endif %}>Low</option>
+            <option value="Medium" {% if urgency_filter == 'Medium' %}selected{% endif %}>Medium</option>
+            <option value="High" {% if urgency_filter == 'High' %}selected{% endif %}>High</option>
+        </select>
+
+        <button type="submit" aria-label="Filter complaints">Filter</button>
+    </form>
+
+    <form class="reset-form" action="/reset_db" method="get" onsubmit="return confirm('⚠️ Are you sure you want to delete ALL complaints and users?');">
+        <button type="submit" aria-label="Reset all data">🔄 Reset All Data</button>
+    </form>
+
+    <table role="table" aria-label="Complaint List">
+        <thead>
+            <tr>
+                <th scope="col">Complaint ID</th>
+                <th scope="col">Username</th>
+                <th scope="col">Description</th>
+                <th scope="col">Category</th>
+                <th scope="col">Urgency Level</th>
+                <th scope="col">Registered Date and Time</th>
+                <th scope="col">Status</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for complaint in complaints %}
+                <tr>
+                    <td data-label="Complaint ID">{{ complaint[0] }}</td>
+                    <td data-label="Username">{{ complaint[1] }}</td>
+                    <td data-label="Description">{{ complaint[2] }}</td>
+                    <td data-label="Category">{{ complaint[3] }}</td>
+                    <td data-label="Urgency Level">{{ complaint[4] }}</td>
+                    <td data-label="Registered Date and Time">{{ complaint[5] }}</td>
+                    <td data-label="Status">
+                        <form action="/update_status/{{ complaint[0] }}" method="POST" style="display: flex; align-items: center; gap: 8px;">
+                            <select class="status-select" name="status" aria-label="Change status for complaint {{ complaint[0] }}">
+                                <option value="Pending" {% if complaint[6] == 'Pending' %}selected{% endif %}>Pending</option>
+                                <option value="Completed" {% if complaint[6] == 'Completed' %}selected{% endif %}>Completed</option>
+                            </select>
+                            <button class="update-btn" type="submit" aria-label="Update status for complaint {{ complaint[0] }}">Update</button>
+                        </form>
+                    </td>
+                    <td data-label="Actions" style="display: flex; gap: 8px; flex-wrap: wrap;">
+                        <button onclick="sendEmail({{ complaint[0] }})" aria-label="Send email notification for complaint {{ complaint[0] }}">Send Email</button>
+                        <form action="/delete_complaint/{{ complaint[0] }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this complaint?');">
+                            <button class="btn-delete" type="submit" aria-label="Delete complaint {{ complaint[0] }}">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<footer style="background-color:#2a3f54; color:#fff; text-align:center; padding: 15px 0;">
+    &copy; 2025 AI Complaint Management System. All rights reserved.
+</footer>
+
+<script>
+    function sendEmail(complaintId) {
+        fetch(`/send_email/${complaintId}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            alert(data.message);
+        })
+        .catch(error => {
+            console.error("Error:", error);
+            alert("Failed to send email.");
+        });
+    }
+</script>
+
+</body>
+</html>
