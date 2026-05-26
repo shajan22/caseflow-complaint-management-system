@@ -1,0 +1,22 @@
+{
+  "name": "Python 3 - CaseFlow",
+  "image": "mcr.microsoft.com/devcontainers/python:1-3.9-bullseye",
+  
+  // Automatically install requirements when the container is created
+  "postCreateCommand": "pip install -r requirements_final.txt",
+  
+  // Forward the Flask port (5000) to the browser
+  "forwardPorts": [5000],
+  
+  // Run the app automatically when the container starts
+  "postStartCommand": "python app.py",
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance"
+      ]
+    }
+  }
+}
