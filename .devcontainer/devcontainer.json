@@ -3,7 +3,7 @@
   "image": "mcr.microsoft.com/devcontainers/python:1-3.9-bullseye",
   
   // Automatically install requirements when the container is created
-  "postCreateCommand": "pip install -r requirements_final.txt",
+  "postCreateCommand": "pip install -r requirements_crct.txt",
   
   // Forward the Flask port (5000) to the browser
   "forwardPorts": [5000],
